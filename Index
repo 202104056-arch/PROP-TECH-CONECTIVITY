@@ -1,0 +1,165 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Header } from "@/components/Header";
+import { Button } from "@/components/ui/button";
+import {
+  MapPin,
+  User,
+  Briefcase,
+  Search,
+  Shield,
+  Zap,
+  ArrowRight,
+} from "lucide-react";
+
+export const Route = createFileRoute("/")({
+  component: Index,
+});
+
+function Index() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <Header />
+
+      {/* HERO */}
+      <section className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+            <Zap className="h-3 w-3" />
+            Plataforma inmobiliaria de Bolivia
+          </span>
+
+          <h1 className="mt-5 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            Encuentra tu próxima propiedad en{" "}
+            <span className="text-primary">PROP CODE</span>
+          </h1>
+
+          <p className="mt-5 text-lg text-slate-600">
+            Anticrético, alquiler o compra. Explora propiedades en Cochabamba con
+            un mapa interactivo, filtros inteligentes y agentes verificados.
+          </p>
+        </div>
+
+        {/* CARDS */}
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {/* MAPA */}
+          <Link
+            to="/map"
+            className="group relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-blue-700 p-8 text-white shadow-xl transition hover:-translate-y-1 lg:col-span-3 lg:p-12"
+          >
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white blur-3xl" />
+              <div className="absolute -bottom-20 left-20 h-64 w-64 rounded-full bg-cyan-300 blur-3xl" />
+            </div>
+
+            <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-xl">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
+                  <MapPin className="h-3 w-3" />
+                  Destacado
+                </div>
+
+                <h2 className="mt-4 text-3xl font-bold lg:text-4xl">
+                  Mapa Interactivo
+                </h2>
+
+                <p className="mt-3 text-white/85">
+                  Explora todas las propiedades en Cochabamba sobre un mapa real
+                  con filtros por tipo, operación y precio.
+                </p>
+
+                <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-primary">
+                  Abrir mapa <ArrowRight className="h-4 w-4" />
+                </div>
+              </div>
+
+              <div className="hidden lg:block">
+                <div className="relative h-44 w-44">
+                  <div className="absolute inset-0 rounded-3xl border-2 border-white/30" />
+                  <div className="absolute inset-4 rounded-2xl border border-white/40" />
+                  <MapPin className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-white" />
+                </div>
+              </div>
+            </div>
+          </Link>
+
+          {/* USER */}
+          <Link
+            to="/login/user"
+            className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-primary/40"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+              <User className="h-6 w-6" />
+            </div>
+            <h3 className="mt-5 text-xl font-semibold">Entrar como Usuario</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Busca propiedades y guarda favoritos.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary">
+              Continuar →
+            </div>
+          </Link>
+
+          {/* AGENT */}
+          <Link
+            to="/login/agent"
+            className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:border-primary/40 lg:col-span-2"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+              <Briefcase className="h-6 w-6" />
+            </div>
+            <h3 className="mt-5 text-xl font-semibold">
+              Entrar como Agente
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Publica y gestiona propiedades.
+            </p>
+            <div className="mt-5 text-sm font-semibold text-primary">
+              Acceder →
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="grid gap-8 md:grid-cols-3">
+          {[
+            {
+              icon: Search,
+              title: "Búsqueda inteligente",
+              desc: "Filtros en tiempo real.",
+            },
+            {
+              icon: MapPin,
+              title: "Mapa real",
+              desc: "Ubicación exacta de propiedades.",
+            },
+            {
+              icon: Shield,
+              title: "Agentes verificados",
+              desc: "Seguridad en anuncios.",
+            },
+          ].map((f) => (
+            <div key={f.title} className="rounded-2xl border bg-white p-6">
+              <f.icon className="h-6 w-6 text-primary" />
+              <h4 className="mt-4 font-semibold">{f.title}</h4>
+              <p className="text-sm text-slate-600">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 text-center">
+        <Button asChild size="lg">
+          <Link to="/map">Explorar mapa</Link>
+        </Button>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t py-8 text-center text-sm text-slate-500">
+        © {new Date().getFullYear()} PROP CODE · Cochabamba
+      </footer>
+    </div>
+  );
+}
