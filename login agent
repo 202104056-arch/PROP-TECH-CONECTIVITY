@@ -1,0 +1,56 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Header } from "@/components/Header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Briefcase } from "lucide-react";
+
+export const Route = createFileRoute("/login/agent")({
+  component: AgentLogin,
+});
+
+function AgentLogin() {
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <Header />
+      <div className="mx-auto flex max-w-md flex-col px-4 py-16">
+        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+            <Briefcase className="h-6 w-6" />
+          </div>
+          <h1 className="mt-5 text-2xl font-bold text-slate-900">Entrar como Agente</h1>
+          <p className="mt-1 text-sm text-slate-600">
+            Gestiona y publica tus propiedades en PROP CODE.
+          </p>
+
+          <form
+            className="mt-6 space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = "/agent";
+            }}
+          >
+            <div>
+              <Label htmlFor="email">Correo profesional</Label>
+              <Input id="email" type="email" required placeholder="agente@inmobiliaria.bo" className="mt-1.5" />
+            </div>
+            <div>
+              <Label htmlFor="password">Contraseña</Label>
+              <Input id="password" type="password" required className="mt-1.5" />
+            </div>
+            <Button type="submit" className="w-full">
+              Acceder al panel
+            </Button>
+          </form>
+
+          <p className="mt-6 text-center text-xs text-slate-500">
+            ¿Buscas propiedades?{" "}
+            <Link to="/login/user" className="font-medium text-primary hover:underline">
+              Entrar como usuario
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
